@@ -1,9 +1,12 @@
 package by.homeunix.tframe
 
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.annotation.RequiresApi
 import android.view.View
+import by.homeunix.tframe.telegram.TelegramController
 import kotlinx.android.synthetic.main.activity_picture_frame.*
 
 /**
@@ -12,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_picture_frame.*
  */
 class PictureFrame : AppCompatActivity() {
     private val mHideHandler = Handler()
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
 
@@ -69,6 +73,8 @@ class PictureFrame : AppCompatActivity() {
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100)
+
+        val telegram = TelegramController(applicationContext.filesDir.absolutePath)
     }
 
     private fun toggle() {
